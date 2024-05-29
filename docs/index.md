@@ -14,27 +14,27 @@ Delizia ist eine Web-Anwendung, die die Restaurantwahl in Gruppen erleichtert. N
 ### Aleyna Cetin
 
 About
-: Some info about Jane
+: Some info about...
 
 Matr.-Nr.
-: 1234567
+: 77211974944
 
 ### Arathi Suwatharan
 
 About
-: Some info about Joe
+: Some info about...
 
 Matr.-Nr.
-: 1234567
+: 77211973039
 
 
 ### Tara Darvish
 
 About
-: Some info about Joe
+: Some info about...
 
 Matr.-Nr.
-: 1234567
+: 77211974957
 
 ## Eidesstattliche Erklärung
 
