@@ -8,7 +8,7 @@ nav_order: 0
 >
 > You may delete this `attention` box.
 
-# [Project Name]
+# [Delizia]
 
 [Project description]
 
