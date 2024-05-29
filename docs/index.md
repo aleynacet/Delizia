@@ -8,13 +8,13 @@ nav_order: 0
 >
 > You may delete this `attention` box.
 
-# [Delizia]
+# Delizia
 
-[Project description]
+Delizia ist eine Web-Anwendung, die die Restaurantwahl in Gruppen erleichtert. Nachdem Nutzer gefiltert haben, was sie essen möchten, können Freunde oder die Familie in eine Abstimmung einbezogen werden, um das ideale Lokal auszuwählen. Somit wird der Entscheidungsprozess verkürzt.
 
 ## Team members
 
-### [Jane Dane]
+### Aleyna Cetin
 
 About
 : Some info about Jane
@@ -22,7 +22,16 @@ About
 Matr.-Nr.
 : 1234567
 
-### [Joe Doe]
+### Arathi Suwatharan
+
+About
+: Some info about Joe
+
+Matr.-Nr.
+: 1234567
+
+
+### Tara Darvish
 
 About
 : Some info about Joe
