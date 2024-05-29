@@ -1,2 +1,2 @@
 # Delizia
-Delizia is our semester project that tailors restaurant choices to match your eating habits. Once filtered, you can engage your friends or family in a voting process to select the ideal dining option that satisfies everyone's cravings, ensuring a quicker decision-making process.
+Delizia ist eine Web-Anwendung, die die Restaurantwahl in Gruppen erleichtert. Nachdem Nutzer gefiltert haben, was sie essen möchten, können Freunde oder die Familie in eine Abstimmung einbezogen werden, um das ideale Lokal auszuwählen. Somit wird der Entscheidungsprozess verkürzt.
