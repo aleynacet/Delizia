@@ -4,7 +4,7 @@ nav_order: 1
 ---
 
 {: .label }
-Aleyna Cetin
+Jane dane
 
 {: .no_toc }
 # Value proposition
