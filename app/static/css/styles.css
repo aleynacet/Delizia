@@ -1,3 +1,4 @@
+/* app/static/css/styles.css */
 
 body {
     font-family: Arial, sans-serif;
@@ -10,12 +11,13 @@ body {
 header {
     background-color: #4CAF50;
     color: white;
-    padding: 10px 0;
+    padding: 20px 0;
 }
 
 header .logo {
-    width: 100px;
-    height: auto;
+    font-size: 36px;
+    font-weight: bold;
+    margin: 0;
 }
 
 .container {
