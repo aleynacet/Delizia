@@ -1,18 +1,27 @@
+/* app/static/css/styles.css */
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     text-align: center;
-    background-size: cover;
     background-color: #f9f9f9;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px 0;
+}
+
+header .logo {
+    font-size: 36px;
+    font-weight: bold;
+    margin: 0;
 }
 
 .container {
     margin-top: 50px;
-    background-color: rgba(255, 255, 255, 0.8); /* Optional: heller Hintergrund hinter dem Inhalt */
-    padding: 20px;
-    border-radius: 10px;
-    display: inline-block;
 }
 
 .buttons {
@@ -21,15 +30,14 @@ body {
 
 .btn {
     text-decoration: none;
-    background-color: #ef569b;
+    background-color: #4CAF50;
     color: white;
     padding: 10px 20px;
     margin: 5px;
     border-radius: 5px;
     font-size: 16px;
-    border: 1px solid black; 
 }
 
 .btn:hover {
-    background-color: #ef569b;
+    background-color: #45a049;
 }
