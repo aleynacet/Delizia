@@ -3,17 +3,16 @@ body {
     margin: 0;
     padding: 0;
     text-align: center;
+    background-size: cover;
     background-color: #f9f9f9;
 }
 
 .container {
     margin-top: 50px;
-}
-
-.logo {
-    display: block;
-    margin: 20px auto;
-    max-width: 200px;
+    background-color: rgba(255, 255, 255, 0.8); /* Optional: heller Hintergrund hinter dem Inhalt */
+    padding: 20px;
+    border-radius: 10px;
+    display: inline-block;
 }
 
 .buttons {
@@ -22,14 +21,15 @@ body {
 
 .btn {
     text-decoration: none;
-    background-color: #4CAF50;
+    background-color: #ef569b;
     color: white;
     padding: 10px 20px;
     margin: 5px;
     border-radius: 5px;
     font-size: 16px;
+    border: 1px solid black; 
 }
 
 .btn:hover {
-    background-color: #45a049;
+    background-color: #ef569b;
 }
