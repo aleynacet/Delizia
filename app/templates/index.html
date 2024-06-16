@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-center align-items-center vh-100">
+   <div class="text-center">
+       <h1 class="mb-4">Willkommen bei Delizia!</h1>
+       <a href="{{ url_for('main.login') }}" class="btn custom-btn mb-3">Login</a>
+       <a href="{{ url_for('main.register') }}" class="btn custom-btn">Register</a>
+   </div>
+</div>
+{% endblock %}

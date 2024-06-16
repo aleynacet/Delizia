@@ -1,0 +1,30 @@
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+.vh-100 {
+    height: 100vh;
+}
+
+.text-center .custom-btn {
+    width: 200px;
+    height: 50px;
+    background-color: #DB7093; /* Altrosa */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    display: block;
+    margin: 0 auto;
+}
+
+.custom-btn.btn-block {
+    width: 100%;
+}
+
+.text-center .custom-btn:hover {
+    background-color: #c06082; /* Dunklerer Altrosa für Hover-Effekt */
+}
+
