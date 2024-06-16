@@ -1,10 +1,42 @@
 body, html {
     height: 100%;
     margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f9fa; /* Heller Hintergrund */
+    color: #333; /* Standard Textfarbe */
 }
 
 .vh-100 {
     height: 100vh;
+}
+
+.navbar {
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Leichter Schatten für Tiefe */
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.navbar-brand img {
+    margin-right: 10px;
+    border-radius: 50%; /* Rundes Logo */
+    padding: 5px;
+    background: white; /* Hintergrundfarbe für Logo */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Leichter Schatten */
+}
+
+.navbar-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333; /* Neutrale Farbe für Titel */
+}
+
+.container {
+    text-align: center;
 }
 
 .text-center .custom-btn {
@@ -18,13 +50,74 @@ body, html {
     text-transform: uppercase;
     display: block;
     margin: 0 auto;
-}
-
-.custom-btn.btn-block {
-    width: 100%;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .text-center .custom-btn:hover {
-    background-color: #c06082; /* Dunklerer Altrosa für Hover-Effekt */
+    background-color: #c06082; /* Dunkleres Altrosa */
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
+.text-center .custom-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 4px #c06082;
+}
+
+form .form-control {
+    border: 2px solid #ccc; /* Neutrale Rahmenfarbe */
+    border-radius: 5px;
+    padding: 10px;
+    color: #333; /* Textfarbe */
+}
+
+form .form-control:focus {
+    border-color: #007BFF; /* Blau für Fokus */
+    box-shadow: none;
+}
+
+form label {
+    color: #333; /* Neutrale Farbe für Labels */
+}
+
+h2 {
+    color: #333; /* Neutrale Farbe für Überschriften */
+}
+
+.alert-danger {
+    color: white;
+    background-color: #f44336;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.alert-success {
+    color: white;
+    background-color: #4caf50;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.home-logo {
+    width: 150px;
+    height: auto;
+    border-radius: 50%;
+    padding: 10px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+@media (max-width: 576px) {
+    .text-center .custom-btn {
+        width: 100%;
+    }
+
+    .navbar-brand {
+        flex-direction: column;
+    }
+
+    .navbar-title {
+        font-size: 1.2em;
+    }
+}
