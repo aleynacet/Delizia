@@ -40,7 +40,8 @@ def login():
         if user and user["password"] == password:
             session['user'] = user
             flash('Login successful', 'success')
-            return redirect(url_for('main.home'))
+             # leitet zu categories weiter
+            return redirect(url_for('main.categories'))  
         else:
             flash('Login unsuccessful. Check your email and password', 'danger')
     
@@ -51,3 +52,11 @@ def logout():
     session.pop('user', None)
     flash('Logged out successfully', 'success')
     return redirect(url_for('main.home'))
+
+@bp.route('/categories')
+def categories():
+    # man muss eingeloggt sein, um diese Seite zu sehen
+    if 'user' not in session:
+        flash('Please log in to view this page', 'danger')
+        return redirect(url_for('main.login'))
+    return render_template('categories.html')

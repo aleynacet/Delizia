@@ -3,7 +3,7 @@
 <div class="d-flex justify-content-center align-items-center vh-100">
     <div class="text-center" style="width: 300px;">
         <h2 class="mb-4">Login</h2>
-        <form method="POST" action="{{ url_for('main.login') }}">
+        <form method="POST" action="{{ url_for('main.login') }}" id="loginForm">
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" class="form-control" id="email" name="email" required>
