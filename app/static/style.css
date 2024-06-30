@@ -18,7 +18,8 @@ body, html {
 .navbar-brand {
     display: flex;
     align-items: center;
-    text-align: center;
+    justify-content: center; /* Center the items horizontally */
+    flex-grow: 1; /* Allow the brand to grow and take available space */
 }
 
 .navbar-brand img {
