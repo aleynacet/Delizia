@@ -108,6 +108,13 @@ h2 {
     margin-bottom: 20px;
 }
 
+.bordered-box {
+    border: 2px solid #c06082;
+    border-radius: 5px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
 @media (max-width: 576px) {
     .text-center .custom-btn {
         width: 100%;

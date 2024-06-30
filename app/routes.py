@@ -60,3 +60,7 @@ def categories():
         flash('Please log in to view this page', 'danger')
         return redirect(url_for('main.login'))
     return render_template('categories.html')
+
+@bp.route('/category/asian')
+def asian():
+    return render_template('asian.html')
