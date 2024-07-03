@@ -61,6 +61,19 @@ def categories():
         return redirect(url_for('main.login'))
     return render_template('categories.html')
 
+
+@bp.route('/category/all')
+def all():
+    return render_template('all.html')
+
 @bp.route('/category/asian')
 def asian():
     return render_template('asian.html')
+
+@bp.route('/category/burgers')
+def burgers():
+    return render_template('burgers.html')
+
+
+
+
