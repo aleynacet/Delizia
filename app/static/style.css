@@ -40,6 +40,7 @@ body, html {
     text-align: center;
 }
 
+/* Default styles for all other buttons */
 .text-center .custom-btn {
     width: 200px;
     height: 50px;
@@ -63,6 +64,54 @@ body, html {
 .text-center .custom-btn:active {
     transform: translateY(0);
     box-shadow: 0 4px #c06082;
+}
+
+/* Specific styles for category buttons */
+.category-btn {
+    width: 140px;
+    height: 140px; 
+    background-color: #DB7093; /* Altrosa */
+    color: white;
+    border: none;
+    border-radius: 50%; /* Fully rounded for circular shape */
+    font-size: 1.2em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center; /* Center text */
+    padding: 10px; /* Padding for text inside the button */
+    margin: 10px auto; /* Spacing between buttons */
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Initial shadow */
+}
+
+.category-btn:hover {
+    background-color: #c06082; /* Dunkleres Altrosa */
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.category-btn:active {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Rotating and varying the position of buttons */
+.category-btn:nth-child(odd) {
+    transform: rotate(-5deg);
+}
+
+.category-btn:nth-child(even) {
+    transform: rotate(5deg);
+}
+
+.category-btn:nth-child(3n) {
+    transform: translateY(10px);
+}
+
+.category-btn:nth-child(3n+1) {
+    transform: translateY(-10px);
 }
 
 form .form-control {
@@ -118,6 +167,10 @@ h2 {
 
 @media (max-width: 576px) {
     .text-center .custom-btn {
+        width: 100%;
+    }
+
+    .category-btn {
         width: 100%;
     }
 

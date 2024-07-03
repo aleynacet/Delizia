@@ -1,27 +1,26 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="text-center mt-4">
-    <div class="row">
+    <div class="row justify-content-center">
         <div class="col-md-4 mb-3">
-            <a href="{{ url_for('main.all') }}" class="btn custom-btn">All</a>        
-            </div>
-        <div class="col-md-4 mb-3">
-        <!-- merken für die weiterleitung auf die kategorien -->
-            <a href="{{ url_for('main.asian') }}" class="btn custom-btn">Asian</a>
+            <a href="{{ url_for('main.all') }}" class="btn category-btn">All</a>        
         </div>
         <div class="col-md-4 mb-3">
-            <a href="{{ url_for('main.burgers') }}" class="btn custom-btn">Burgers</a>
+            <a href="{{ url_for('main.asian') }}" class="btn category-btn">Asian</a>
+        </div>
+        <div class="col-md-4 mb-3">
+            <a href="{{ url_for('main.burgers') }}" class="btn category-btn">Burgers</a>
         </div>
     </div>
-    <div class="row">
+    <div class="row justify-content-center">
         <div class="col-md-4 mb-3">
-            <a href="#" class="btn custom-btn">Pasta</a>
+            <a href="#" class="btn category-btn">Pasta</a>
         </div>
         <div class="col-md-4 mb-3">
-            <a href="#" class="btn custom-btn">Vegan</a>
+            <a href="#" class="btn category-btn">Vegan</a>
         </div>
         <div class="col-md-4 mb-3">
-            <a href="#" class="btn custom-btn">Vegetarian</a>
+            <a href="#" class="btn category-btn">Vegetarian</a>
         </div>
     </div>
 </div>
