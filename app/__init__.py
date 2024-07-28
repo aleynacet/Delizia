@@ -2,8 +2,12 @@ from flask import Flask, render_template, redirect, url_for, request, flash, ses
 
 def create_app():
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = 'your_secret_key'  #  for Flask forms and sessions
+    app.config['SECRET_KEY'] = 'your_secret_key'  # Important for Flask forms and sessions
 
+    # Static user data (for demo purposes)
+    users = {
+        "test@example.com": {"password": "password123", "username": "testuser"}
+    }
 
     @app.route('/')
     def home():
