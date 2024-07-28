@@ -74,6 +74,27 @@ def asian():
 def burgers():
     return render_template('burgers.html')
 
+@bp.route('/choosediner', methods=['GET', 'POST'])
+def choosediner():
+    if request.method == 'POST':
+        selected_diners = request.form.get('selected_diners')
+        if selected_diners:
+            session['selected_diners'] = selected_diners.split(',')
+            return redirect(url_for('main.createpoll'))
+    return render_template('choosediner.html')
 
+@bp.route('/createpoll')
+def createpoll():
+    diners = session.get('selected_diners')
+    if not diners:
+        return redirect(url_for('main.choosediner'))
+    return render_template('createpoll.html', diners=diners)
+
+@bp.route('/vote')
+def vote():
+    diners = session.get('selected_diners')
+    if not diners:
+        return redirect(url_for('main.choosediner'))
+    return render_template('vote.html', diners=diners)
 
 

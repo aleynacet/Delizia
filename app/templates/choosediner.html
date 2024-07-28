@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <form method="POST">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-center mb-4">Choose 3 Diners</h2>
+                <div class="bordered-box d-flex align-items-center selectable" data-diner="Burgermeister">
+                    <img src="{{ url_for('static', filename='images/burgermeister.png') }}" alt="Burgermeister" height="100" class="mr-3">
+                    <h1>Burgermeister</h1>
+                </div>
+                <div class="bordered-box d-flex align-items-center selectable" data-diner="AsiaGourmet">
+                    <img src="{{ url_for('static', filename='images/asiagourmet.png') }}" alt="Asia Gourmet" height="100" class="mr-3">
+                    <h1>AsiaGourmet</h1>
+                </div>
+                <div class="bordered-box d-flex align-items-center selectable" data-diner="ZEN Restaurant">
+                    <img src="{{ url_for('static', filename='images/zenrestaurant.png') }}" alt="Italian" height="100" class="mr-3">
+                    <h1>ZEN Restaurant</h1>
+                </div>
+                <div class="bordered-box d-flex align-items-center selectable" data-diner="UMAMI">
+                    <img src="{{ url_for('static', filename='images/umami.png') }}" alt="Asian Cuisine" height="100" class="mr-3">
+                    <h1>UMAMI</h1>
+                </div>
+                <input type="hidden" name="selected_diners" id="selectedDinersInput">
+                <div class="text-center mt-3">
+                    <button id="proceedButton" class="btn custom-btn mb-3" disabled>Proceed</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const selectableItems = document.querySelectorAll('.selectable');
+    const proceedButton = document.getElementById('proceedButton');
+    const selectedDinersInput = document.getElementById('selectedDinersInput');
+    let selectedDiners = [];
+    selectableItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const diner = item.getAttribute('data-diner');
+            if (selectedDiners.includes(diner)) {
+                selectedDiners = selectedDiners.filter(d => d !== diner);
+                item.classList.remove('selected');
+            } else if (selectedDiners.length < 3) {
+                selectedDiners.push(diner);
+                item.classList.add('selected');
+            }
+            selectedDinersInput.value = selectedDiners.join(',');
+            proceedButton.disabled = selectedDiners.length === 0;
+        });
+    });
+});
+</script>
+{% endblock %}

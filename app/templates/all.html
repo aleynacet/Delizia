@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+
 <div class = "bordered-box d-flex align-items-center">
     <img src="{{ url_for('static', filename='images/zenrestaurant.png') }}" alt="Asian Cuisine" height = "100" class="mr-3">
     <h1>ZEN Restaurant</h1>
@@ -9,12 +10,15 @@
     <h1>UMAMI</h1>
 </div>
 <div class = "bordered-box d-flex align-items-center">
-    <img src="{{ url_for('static', filename='images/asiagourment.png') }}" alt="Asian Cuisine" height = "100" class="mr-3">
+    <img src="{{ url_for('static', filename='images/asiagourmet.png') }}" alt="Asian Cuisine" height = "100" class="mr-3">
     <h1>AsiaGourmet</h1>
 </div>  
 <div class = "bordered-box d-flex align-items-center">
     <img src="{{ url_for('static', filename='images/burgermeister.png') }}"alt="Asian Cuisine" height = "100" class="mr-3">
     <h1>Burgermeister</h1>
+</div>
+<div class="text-center margin-top">
+    <a href="{{ url_for('main.choosediner') }}" class="btn custom-btn mb-3">Start Poll</a>
 </div>
 
 {% endblock %}

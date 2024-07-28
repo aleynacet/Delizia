@@ -165,6 +165,10 @@ h2 {
     margin-top: 20px;
 }
 
+.margin-top {
+    margin-top: 20px; 
+}
+
 @media (max-width: 576px) {
     .text-center .custom-btn {
         width: 100%;
@@ -180,5 +184,23 @@ h2 {
 
     .navbar-title {
         font-size: 1.2em;
+    }
+
+    /* auswählbare Buttons für die Abstimmung wird noch nicht benutzt*/
+    .selectable {
+        cursor: pointer;
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 5px;
+        transition: box-shadow 0.3s ease;
+    }
+    
+    .selectable:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .selectable.selected {
+        border-color: #007bff;
+        box-shadow: 0 4px 8px rgba(0, 123, 255, 0.5);
     }
 }
