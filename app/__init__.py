@@ -1,5 +1,7 @@
-from flask import Flask, render_template, redirect, url_for, request, flash, session
+from flask import Flask, render_template, redirect, url_for, request, flash, session, jsonify
 from firebase_auth import firebase_register, firebase_login
+# Für die API Calls zu Yelp ausklammern für flask run
+# from save_to_firestore import save_data_to_firestore, fetch_yelp_data
 
 def create_app():
     app = Flask(__name__)
@@ -95,5 +97,14 @@ def create_app():
         if not diners:
             return redirect(url_for('choosediner'))
         return render_template('vote.html', diners=diners)
+
+    @app.route('/update_yelp_data', methods=['GET'])
+    def update_yelp_data():
+        try:
+            data = fetch_yelp_data('restaurants', 'Berlin', 'italian', 5000)
+            save_data_to_firestore(data)
+            return jsonify({"message": "Data updated successfully."}), 200
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500
 
     return app
