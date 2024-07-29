@@ -1,13 +1,9 @@
 from flask import Flask, render_template, redirect, url_for, request, flash, session
+from firebase_auth import firebase_register, firebase_login
 
 def create_app():
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = 'your_secret_key'  # Important for Flask forms and sessions
-
-    # Static user data (for demo purposes)
-    users = {
-        "test@example.com": {"password": "password123", "username": "testuser"}
-    }
+    app.config['SECRET_KEY'] = 'your_secret_key'  # for Flask forms and sessions
 
     @app.route('/')
     def home():
@@ -17,18 +13,22 @@ def create_app():
     def register():
         if request.method == 'POST':
             email = request.form['email']
-            username = request.form['username']
             password = request.form['password']
             confirm_password = request.form['confirm_password']
 
             if password != confirm_password:
                 flash('Passwords do not match', 'danger')
-            elif email in users:
-                flash('Email already registered', 'danger')
             else:
-                users[email] = {"password": password, "username": username}
-                flash('Registration successful, please log in', 'success')
-                return redirect(url_for('login'))
+                result = firebase_register(email, password)
+                if 'error' in result:
+                    error_message = result['error']['message']
+                    if error_message == 'EMAIL_EXISTS':
+                        flash('This email is already registered.', 'danger')
+                    else:
+                        flash(error_message, 'danger')
+                else:
+                    flash('Registration successful, please log in', 'success')
+                    return redirect(url_for('login'))
 
         return render_template('register.html')
 
@@ -37,15 +37,15 @@ def create_app():
         if request.method == 'POST':
             email = request.form['email']
             password = request.form['password']
-            user = users.get(email)
 
-            if user and user["password"] == password:
-                session['user'] = user
-                flash('Login successful', 'success')
-                return redirect(url_for('categories'))  
+            result = firebase_login(email, password)
+            if 'error' in result:
+                flash(result['error']['message'], 'danger')
             else:
-                flash('Login unsuccessful. Check your email and password', 'danger')
-
+                session['user'] = result['idToken']
+                flash('Login successful', 'success')
+                return redirect(url_for('categories'))
+            
         return render_template('login.html')
 
     @app.route('/logout')
