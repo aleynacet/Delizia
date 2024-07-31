@@ -1,3 +1,4 @@
+/* Allgemeine Stile */
 body, html {
     height: 100%;
     margin: 0;
@@ -10,6 +11,7 @@ body, html {
     height: 100vh;
 }
 
+/* Navbar */
 .navbar {
     background-color: #f8f9fa;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Leichter Schatten für Tiefe */
@@ -36,11 +38,12 @@ body, html {
     color: #333; /* Neutrale Farbe für Titel */
 }
 
+/* Container */
 .container {
     text-align: center;
 }
 
-/* Default styles for all other buttons */
+/* Buttons */
 .text-center .custom-btn {
     width: 200px;
     height: 50px;
@@ -66,10 +69,10 @@ body, html {
     box-shadow: 0 4px #c06082;
 }
 
-/* Specific styles for category buttons */
+/* Kategorie-Buttons */
 .category-btn {
     width: 140px;
-    height: 140px; 
+    height: 140px;
     background-color: #DB7093; /* Altrosa */
     color: white;
     border: none;
@@ -97,7 +100,7 @@ body, html {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Rotating and varying the position of buttons */
+/* Kategorie-Button Variationen */
 .category-btn:nth-child(odd) {
     transform: rotate(-5deg);
 }
@@ -114,6 +117,7 @@ body, html {
     transform: translateY(-10px);
 }
 
+/* Formulare */
 form .form-control {
     border: 2px solid #ccc; /* Neutrale Rahmenfarbe */
     border-radius: 5px;
@@ -130,10 +134,12 @@ form label {
     color: #333; /* Neutrale Farbe für Labels */
 }
 
+/* Überschriften */
 h2 {
     color: #333; /* Neutrale Farbe für Überschriften */
 }
 
+/* Alerts */
 .alert-danger {
     color: white;
     background-color: #f44336;
@@ -148,6 +154,7 @@ h2 {
     padding: 10px;
 }
 
+/* Home-Logo */
 .home-logo {
     width: 150px;
     height: auto;
@@ -158,17 +165,45 @@ h2 {
     margin-bottom: 20px;
 }
 
+/* Boxen mit Rahmen */
 .bordered-box {
     border: 2px solid #c06082;
     border-radius: 5px;
     padding: 20px;
     margin-top: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bordered-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .margin-top {
-    margin-top: 20px; 
+    margin-top: 20px;
 }
 
+/* Bewertungen */
+.checked {
+    color: orange;
+}
+
+.ratings {
+    display: flex;
+    align-items: center;
+}
+
+.fa-star {
+    font-size: 1.2em;
+}
+
+.review-count {
+    font-size: 1em;
+    color: #666;
+    margin-left: 5px;
+}
+
+/* Medienabfragen für kleine Bildschirme */
 @media (max-width: 576px) {
     .text-center .custom-btn {
         width: 100%;
@@ -186,7 +221,7 @@ h2 {
         font-size: 1.2em;
     }
 
-    /* auswählbare Buttons für die Abstimmung wird noch nicht benutzt*/
+    /* auswählbare Buttons für die Abstimmung wird noch nicht benutzt */
     .selectable {
         cursor: pointer;
         border: 1px solid #ccc;

@@ -1,15 +1,34 @@
 {% extends "base.html" %}
 {% block content %}
-<div class = "bordered-box d-flex align-items-center">
-    <img src="{{ url_for('static', filename='images/zenrestaurant.png') }}" alt="Asian Cuisine" height = "100" class="mr-3">
-    <h1>ZEN Restaurant</h1>
-</div>
-<div class = "bordered-box d-flex align-items-center">
-    <img src="{{ url_for('static', filename='images/umami.png') }}" alt="Asian Cuisine" height = "100" class="mr-3">
-    <h1>UMAMI</h1>
-</div>
-<div class = "bordered-box d-flex align-items-center">
-    <img src="{{ url_for('static', filename='images/asiagourment.png') }}" alt="Asian Cuisine" height = "100" class="mr-3">
-    <h1>AsiaGourmet</h1>
-</div>  
+    <div class="container mt-4">
+        <h2>{{ category }}</h2>
+        <div class="row">
+            {% for restaurant in restaurants %}
+            <div class="col-12 mb-4">
+                <div class="bordered-box d-flex justify-content-between align-items-center">
+                    <h5 class="restaurant-name mb-0">{{ restaurant.name }}</h5>
+                    <div class="ratings d-flex align-items-center">
+                        <div>
+                             <!-- Debugging: Print the rating value -->
+                            <p>Rating: {{ restaurant.rating }}</p>
+                            {% for i in range(1, 6) %}
+                                {% if i <= restaurant.rating %}
+                                    <span class="fa fa-star checked"></span>
+                                {% else %}
+                                    <span class="fa fa-star"></span>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <span class="review-count ml-2">({{ restaurant.review_count }} reviews)</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+<div class="text-center margin-top">
+        <a href="{{ url_for('choosediner') }}" class="btn custom-btn mb-3">Start Poll</a>
+    </div>
 {% endblock %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
