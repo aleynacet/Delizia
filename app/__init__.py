@@ -238,7 +238,26 @@ def create_app():
             if selected_diners:
                 session['selected_diners'] = selected_diners.split(',')
                 return redirect(url_for('createpoll'))
-        return render_template('choosediner.html')
+        
+        try:
+            
+            restaurants_ref = db.collection('yelp_businesses')
+            docs = restaurants_ref.stream()
+
+            restaurants_list = []
+            for doc in docs:
+                restaurants_list.append(doc.to_dict())
+
+            
+            if not restaurants_list:
+                flash('No restaurants found', 'danger')
+                return render_template('choosediner.html', restaurants=[])
+
+            
+            return render_template('choosediner.html', restaurants=restaurants_list)
+        except Exception as e:
+            flash(f"An error occurred while fetching data: {e}", 'danger')
+            return render_template('choosediner.html', restaurants=[])
  
     @app.route('/createpoll')
     def createpoll():

@@ -1,35 +1,38 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container">
-    <form method="POST">
-        <div class="row">
-            <div class="col-md-12">
-                <h2 class="text-center mb-4">Choose 3 Diners</h2>
-                <div class="bordered-box d-flex align-items-center selectable" data-diner="Burgermeister">
-                    <img src="{{ url_for('static', filename='images/burgermeister.png') }}" alt="Burgermeister" height="100" class="mr-3">
-                    <h1>Burgermeister</h1>
-                </div>
-                <div class="bordered-box d-flex align-items-center selectable" data-diner="AsiaGourmet">
-                    <img src="{{ url_for('static', filename='images/asiagourmet.png') }}" alt="Asia Gourmet" height="100" class="mr-3">
-                    <h1>AsiaGourmet</h1>
-                </div>
-                <div class="bordered-box d-flex align-items-center selectable" data-diner="ZEN Restaurant">
-                    <img src="{{ url_for('static', filename='images/zenrestaurant.png') }}" alt="Italian" height="100" class="mr-3">
-                    <h1>ZEN Restaurant</h1>
-                </div>
-                <div class="bordered-box d-flex align-items-center selectable" data-diner="UMAMI">
-                    <img src="{{ url_for('static', filename='images/umami.png') }}" alt="Asian Cuisine" height="100" class="mr-3">
-                    <h1>UMAMI</h1>
-                </div>
-                <input type="hidden" name="selected_diners" id="selectedDinersInput">
-                <div class="text-center mt-3">
-                    <button id="proceedButton" class="btn custom-btn mb-3" disabled>Proceed</button>
+<div class="container mt-4">
+    <h2>{{ category }}</h2>
+    <div class="row">
+        {% for restaurant in restaurants %}
+        <div class="col-12 mb-4 selectable" data-diner="{{ restaurant.name }}">
+            <div class="bordered-box d-flex justify-content-between align-items-center">
+                <h5 class="restaurant-name mb-0">{{ restaurant.name }}</h5>
+                <div class="ratings d-flex align-items-center">
+                    <div>
+                        <p>Rating: {{ restaurant.rating }}</p>
+                        {% for i in range(1, 6) %}
+                            {% if i <= restaurant.rating %}
+                                <span class="fa fa-star checked"></span>
+                            {% else %}
+                                <span class="fa fa-star"></span>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <span class="review-count ml-2">({{ restaurant.review_count }} reviews)</span>
                 </div>
             </div>
         </div>
-    </form>
+        {% endfor %}
+    </div>
 </div>
+<form method="POST" action="{{ url_for('choosediner') }}">
+    <input type="hidden" name="selected_diners" id="selectedDinersInput">
+    <div class="text-center margin-top">
+        <button type="submit" id="proceedButton" class="btn custom-btn mb-3" disabled>Start Poll</button>
+    </div>
+</form>
 {% endblock %}
+
 {% block scripts %}
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -37,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const proceedButton = document.getElementById('proceedButton');
     const selectedDinersInput = document.getElementById('selectedDinersInput');
     let selectedDiners = [];
+
     selectableItems.forEach(item => {
         item.addEventListener('click', function() {
             const diner = item.getAttribute('data-diner');
