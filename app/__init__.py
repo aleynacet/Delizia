@@ -233,6 +233,8 @@ def create_app():
  
     @app.route('/choosediner', methods=['GET', 'POST'])
     def choosediner():
+        category = request.args.get('category', 'all').lower()
+        
         if request.method == 'POST':
             selected_diners = request.form.get('selected_diners')
             if selected_diners:
@@ -240,25 +242,29 @@ def create_app():
                 return redirect(url_for('createpoll'))
         
         try:
-            
             restaurants_ref = db.collection('yelp_businesses')
             docs = restaurants_ref.stream()
-
+            
             restaurants_list = []
             for doc in docs:
-                restaurants_list.append(doc.to_dict())
-
+                restaurant_data = doc.to_dict()
+                categories = restaurant_data.get('categories', [])
+                if category == 'all' or any(cat.get('title').lower() == category for cat in categories):
+                    if category == 'italian':
+                        # Add a default rating and review_count if they do not exist
+                        restaurant_data['rating'] = restaurant_data.get('rating', 0)
+                        restaurant_data['review_count'] = restaurant_data.get('review_count', 0)
+                    restaurants_list.append(restaurant_data)
             
             if not restaurants_list:
-                flash('No restaurants found', 'danger')
-                return render_template('choosediner.html', restaurants=[])
-
+                flash(f'No restaurants found for category {category}', 'danger')
+                return render_template('choosediner.html', restaurants=[], category=category)
             
-            return render_template('choosediner.html', restaurants=restaurants_list)
+            return render_template('choosediner.html', restaurants=restaurants_list, category=category.capitalize())
         except Exception as e:
             flash(f"An error occurred while fetching data: {e}", 'danger')
-            return render_template('choosediner.html', restaurants=[])
- 
+            return render_template('choosediner.html', restaurants=[], category=category.capitalize())
+        
     @app.route('/createpoll')
     def createpoll():
         diners = session.get('selected_diners')
