@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Voting Results</h2>
+    <div class="row">
+        {% set max_votes = votes.values() | max %}
+        {% for diner in diners %}
+        <div class="col-12 mb-4">
+            <div class="bordered-box d-flex justify-content-between align-items-center">
+                <h5 class="restaurant-name mb-0">{{ diner }}</h5>
+                <div class="ratings d-flex align-items-center" style="width: 100%;">
+                    {% set vote_count = votes[diner] if diner in votes else 0 %}
+                    {% set width_percentage = (vote_count / max_votes) * 100 if max_votes > 0 else 0 %}
+                    <div class="progress-bar" style="width: {{ width_percentage }}%; height: 30px; background-color: {% if diner == voted_diner %}green{% else %}grey{% endif %};"></div>
+                    <span class="ml-2">{{ vote_count }}</span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

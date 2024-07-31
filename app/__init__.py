@@ -239,6 +239,7 @@ def create_app():
             selected_diners = request.form.get('selected_diners')
             if selected_diners:
                 session['selected_diners'] = selected_diners.split(',')
+                session['votes'] = {diner: 0 for diner in session['selected_diners']}  # Macht die Votes wieder auf 0
                 return redirect(url_for('createpoll'))
         
         try:
@@ -278,6 +279,40 @@ def create_app():
         if not diners:
             return redirect(url_for('choosediner'))
         return render_template('vote.html', diners=diners)
+    
+    @app.route('/submit_vote', methods=['POST'])
+    def submit_vote():
+        selected_diner = request.form.get('selected_diner')
+        if not selected_diner:
+            flash('Please select a restaurant to vote for', 'danger')
+            return redirect(url_for('vote'))
+
+        # Speichert die Votes in der Session
+        votes = session.get('votes', {})
+        if selected_diner in votes:
+            votes[selected_diner] += 1
+        else:
+            votes[selected_diner] = 1
+        session['votes'] = votes
+
+         # Speichert den gewählten Diner in der Session
+        session['voted_diner'] = selected_diner
+
+        return redirect(url_for('vote_results'))
+    
+    
+
+    @app.route('/vote_results')
+    def vote_results():
+        voted_diner = session.get('voted_diner')
+        if not voted_diner:
+            flash('No vote found', 'danger')
+            return redirect(url_for('vote'))
+
+        diners = session.get('selected_diners')
+        votes = session.get('votes', {})
+        return render_template('vote_results.html', voted_diner=voted_diner, diners=diners, votes=votes)
+    
  
     @app.route('/update_yelp_data', methods=['GET'])
     def update_yelp_data():

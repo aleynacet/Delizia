@@ -238,4 +238,16 @@ h2 {
         border-color: #007bff;
         box-shadow: 0 4px 8px rgba(0, 123, 255, 0.5);
     }
+
+    .bordered-box {
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 5px;
+    }
+    
+    .progress-bar {
+        display: inline-block;
+        height: 30px;
+        background-color: grey;
+    }
 }
