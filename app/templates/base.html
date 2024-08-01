@@ -13,7 +13,7 @@
             {% if 'user' in session and request.endpoint not in ['home', 'login', 'register'] %}
                 <a href="{{ url_for('logout') }}" class="btn custom-btn">Logout</a>
             {% else %}
-                <div></div> <!-- Empty div to balance the flex layout -->
+                <div></div> 
             {% endif %}
             <a class="navbar-brand d-flex align-items-center" href="{{ url_for('home') }}">
                 <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Delizia Logo" height="50" class="d-inline-block align-top">
@@ -22,7 +22,7 @@
             {% if 'user' in session and request.endpoint not in ['home', 'login', 'register'] %}
                 <a href="{{ url_for('categories') }}" class="btn custom-btn">Home</a>
             {% else %}
-                <div></div> <!-- Empty div to balance the flex layout -->
+                <div></div>
             {% endif %}
         </div>
     </nav>

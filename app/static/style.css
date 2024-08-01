@@ -20,8 +20,8 @@ body, html {
 .navbar-brand {
     display: flex;
     align-items: center;
-    justify-content: center; /* Center the items horizontally */
-    flex-grow: 1; /* Allow the brand to grow and take available space */
+    justify-content: center; 
+    flex-grow: 1; /* Logo nimmt so viel Platz wie möglich ein */
 }
 
 .navbar-brand img {
@@ -45,8 +45,8 @@ body, html {
 
 /* Buttons */
 .text-center .custom-btn {
-    width: 250px; /* Increase the width */
-    height: 60px; /* Increase the height */
+    width: 250px; 
+    height: 60px; 
     background-color: #DB7093; /* Altrosa */
     color: white;
     border: none;
@@ -56,7 +56,7 @@ body, html {
     display: block;
     margin: 0 auto;
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    padding: 10px 20px; /* Add padding for more space inside the button */
+    padding: 10px 20px; 
 }
 
 .text-center .custom-btn:hover {
@@ -71,18 +71,18 @@ body, html {
 }
 
 .custom-back-btn {
-    font-size: 1em; /* Slightly larger font size */
+    font-size: 1em; 
     color: black;
     background-color: transparent;
     border: none;
-    padding: 5px 10px; /* Add some padding for a better clickable area */
-    margin-top: 10px; /* Minimal space below the "Start Poll" button */
+    padding: 5px 10px; /* padding für den Text */
+    margin-top: 10px; /* minimaler Abstand zum vorherigen Element */
     text-decoration: underline;
     cursor: pointer;
 }
 
 .custom-back-btn:hover {
-    color: grey; /* Slight color change on hover */
+    color: grey; /* leichtes Grau beim Hover */
     text-decoration: none;
 }
 
@@ -93,17 +93,17 @@ body, html {
     background-color: #DB7093; /* Altrosa */
     color: white;
     border: none;
-    border-radius: 50%; /* Fully rounded for circular shape */
+    border-radius: 50%; /* vollständig runder Button */
     font-size: 1.2em;
     text-transform: uppercase;
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center; /* Center text */
-    padding: 10px; /* Padding for text inside the button */
-    margin: 10px auto; /* Spacing between buttons */
+    text-align: center; 
+    padding: 10px; /* Innenabstand */
+    margin: 10px auto; /* Abstand zu anderen Elementen */
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Initial shadow */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Leichter Schatten für Tiefe */
 }
 
 .category-btn:hover {
@@ -235,7 +235,7 @@ h2 {
 }
 
 .selectable.selected {
-    background-color: #f0a1b5; /* Lighter color */
+    background-color: #f0a1b5; 
     color: white;
     box-shadow: 0 4px 8px rgba(0, 123, 255, 0.5);
 }
@@ -246,13 +246,13 @@ h2 {
 }
 
 input[type="radio"] {
-    display: none; /* Hide original radio button */
+    display: none; /* versteckt den Standard-Radiobutton */
 }
 
 input[type="radio"] + label {
     position: relative;
-    padding-left: 35px; /* Space for custom radio button */
-    cursor: pointer; /* Make label clickable */
+    padding-left: 35px; 
+    cursor: pointer; 
 }
 
 input[type="radio"] + label::before {
@@ -288,38 +288,38 @@ input[type="radio"] + label::after {
 input[type="radio"]:checked + label::after {
     transform: translateY(-50%) scale(1);
 }
-/* Progress Bar Styles */
+/* Progress Bar */
 .progress-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 0; /* Adds vertical spacing around the progress bar */
+    padding: 10px 0; 
 }
 
 .progress-bar-wrapper {
     flex-grow: 1;
-    margin: 0 10px; /* Adds horizontal spacing between the name and the bar, and between the bar and the vote count */
-    background-color: #f0f0f0; /* Light grey background for the bar container */
+    margin: 0 10px; /* fügt Abstand zwischen den Balken hinzu */
+    background-color: #f0f0f0; 
     border-radius: 10px;
-    overflow: hidden; /* Ensures the bar stays within the rounded corners */
+    overflow: hidden; /* stellt sicher, dass der Balken nicht über den Container hinausragt */
     height: 30px;
 }
 
 .progress-bar {
     height: 100%;
-    background-color: grey; /* Default bar color */
+    background-color: grey; /* Standardfarbe für den Balken */
     transition: width 0.3s ease;
 }
 
 .vote-count {
     font-size: 1.2em;
     color: #333;
-    min-width: 40px; /* Ensures the vote count section has some space */
-    text-align: center; /* Centers the vote count text */
+    min-width: 40px; /* Mindestbreite für die Anzeige der Stimmen */
+    text-align: center; /* Zentriert den Text */
 }
 
 .voted-diner {
-    background-color: green !important; /* Highlight the selected diner's bar */
+    background-color: green !important; /* Wird nur für die ausgewählte Kategorie verwendet */
 }
 
 /* Medienabfragen für kleine Bildschirme */
@@ -340,7 +340,7 @@ input[type="radio"]:checked + label::after {
         font-size: 1.2em;
     }
 
-    /* auswählbare Buttons für die Abstimmung wird noch nicht benutzt */
+    /* auswählbare Buttons für die Abstimmung */
     .selectable {
         cursor: pointer;
         border: 1px solid #ccc;

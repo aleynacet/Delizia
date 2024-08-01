@@ -1,6 +1,7 @@
 import logging
 from flask import Flask, render_template, redirect, url_for, request, flash, session, jsonify
 from firebase_auth import firebase_register, firebase_login
+
 # Für die API Calls zu Yelp ausklammern für flask run
 from .save_to_firestore import save_data_to_firestore
 from firebase_admin import firestore
@@ -10,7 +11,7 @@ db = firestore.client()
  
 def create_app():
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = 'your_secret_key'  # for Flask forms and sessions
+    app.config['SECRET_KEY'] = 'your_secret_key'  
  
     @app.route('/')
     def home():
@@ -71,7 +72,7 @@ def create_app():
     @app.route('/category/all')
     def all():
         try:
-            # Fetch data from Firestore
+            # holt die Daten aus Firestore
             restaurants_ref = db.collection('yelp_businesses')
             docs = restaurants_ref.stream()
 
@@ -79,11 +80,11 @@ def create_app():
             for doc in docs:
                 restaurants_list.append(doc.to_dict())
 
-            # Check if any restaurants were fetched
+            # kontrolliert ob Restaurants gefunden wurden
             if not restaurants_list:
                 return "No restaurants found", 404
 
-            # Pass the restaurants list to the template
+            # zeigt die Restaurants in der Webapp an
             return render_template('all.html', restaurants=restaurants_list, category="All")
         except Exception as e:
             return f"An error occurred while fetching data: {e}", 500
@@ -92,7 +93,7 @@ def create_app():
     @app.route('/category/asian')
     def asian():
         try:
-            # Fetch data from Firestore
+            # holt die Daten aus Firestore
             restaurants_ref = db.collection('yelp_businesses')
             docs = restaurants_ref.stream()
 
@@ -103,11 +104,11 @@ def create_app():
                 if any(cat.get('title') in ['Japanese', 'Chinese', 'Korean'] for cat in categories):
                     restaurants_list.append(restaurant_data)
 
-            # Check if any restaurants were fetched
+           
             if not restaurants_list:
                 return "No restaurants found for category 'asian'", 404
 
-            # Pass the restaurants list to the template
+            
             return render_template('asian.html', restaurants=restaurants_list, category="Asian")
         except Exception as e:
             return f"An error occurred while fetching data: {e}", 500
@@ -115,7 +116,7 @@ def create_app():
     @app.route('/category/vegan')
     def vegan():
         try:
-            # Fetch data from Firestore
+            
             restaurants_ref = db.collection('yelp_businesses')
             docs = restaurants_ref.stream()
 
@@ -126,11 +127,11 @@ def create_app():
                 if any(cat.get('title') == 'Vegan' for cat in categories):
                     restaurants_list.append(restaurant_data)
 
-            # Check if any restaurants were fetched
+            
             if not restaurants_list:
                 return "No restaurants found for category 'vegan'", 404
 
-            # Pass the restaurants list to the template
+            
             return render_template('vegan.html', restaurants=restaurants_list, category="Vegan")
         except Exception as e:
             return f"An error occurred while fetching data: {e}", 500
@@ -138,7 +139,6 @@ def create_app():
     @app.route('/category/vegetarian')
     def vegetarian():
         try:
-            # Fetch data from Firestore
             restaurants_ref = db.collection('yelp_businesses')
             docs = restaurants_ref.stream()
 
@@ -149,11 +149,9 @@ def create_app():
                 if any(cat.get('title') == 'Vegetarian' for cat in categories):
                     restaurants_list.append(restaurant_data)
 
-            # Check if any restaurants were fetched
             if not restaurants_list:
                 return "No restaurants found for category 'vegetarian'", 404
 
-            # Pass the restaurants list to the template
             return render_template('vegetarian.html', restaurants=restaurants_list, category="Vegetarian")
         except Exception as e:
             return f"An error occurred while fetching data: {e}", 500
@@ -161,7 +159,6 @@ def create_app():
     @app.route('/category/mexican')
     def mexican():
         try:
-            # Fetch data from Firestore
             restaurants_ref = db.collection('yelp_businesses')
             docs = restaurants_ref.stream()
 
@@ -172,11 +169,9 @@ def create_app():
                 if any(cat.get('title') == 'Mexican' for cat in categories):
                     restaurants_list.append(restaurant_data)
 
-            # Check if any restaurants were fetched
             if not restaurants_list:
                 return "No restaurants found for category 'mexican'", 404
 
-            # Pass the restaurants list to the template
             return render_template('mexican.html', restaurants=restaurants_list, category="Mexican")
         except Exception as e:
             return f"An error occurred while fetching data: {e}", 500
@@ -185,7 +180,6 @@ def create_app():
     @app.route('/category/italian')
     def italian():
         try:
-            # Fetch data from Firestore
             restaurants_ref = db.collection('yelp_businesses')
             docs = restaurants_ref.stream()
 
@@ -194,16 +188,15 @@ def create_app():
                 restaurant_data = doc.to_dict()
                 categories = restaurant_data.get('categories', [])
                 if any(cat.get('title') == 'Italian' for cat in categories):
-                    # Add a default rating and review_count if they do not exist
+                    # fügt die Bewertung und die Anzahl der Bewertungen hinzu
                     restaurant_data['rating'] = restaurant_data.get('rating', 0)
                     restaurant_data['review_count'] = restaurant_data.get('review_count', 0)
                     restaurants_list.append(restaurant_data)
 
-            # Check if any restaurants were fetched
+        
             if not restaurants_list:
                 return "No restaurants found for category 'italian'", 404
 
-            # Pass the restaurants list to the template
             return render_template('italian.html', restaurants=restaurants_list, category="Italian")
         except Exception as e:
             return f"An error occurred while fetching data: {e}", 500
@@ -211,7 +204,6 @@ def create_app():
     @app.route('/category/german')
     def german():
         try:
-            # Fetch data from Firestore
             restaurants_ref = db.collection('yelp_businesses')
             docs = restaurants_ref.stream()
 
@@ -222,11 +214,9 @@ def create_app():
                 if any(cat.get('title') == 'German' for cat in categories):
                     restaurants_list.append(restaurant_data)
 
-            # Check if any restaurants were fetched
             if not restaurants_list:
                 return "No restaurants found for category 'german'", 404
 
-            # Pass the restaurants list to the template
             return render_template('german.html', restaurants=restaurants_list, category="German")
         except Exception as e:
             return f"An error occurred while fetching data: {e}", 500
@@ -298,7 +288,7 @@ def create_app():
             flash('Please select a restaurant to vote for', 'danger')
             return redirect(url_for('vote'))
 
-        # Save the votes in the session
+        # speichert die Votes in der Session
         votes = session.get('votes', {})
         if selected_diner in votes:
             votes[selected_diner] += 1
@@ -306,7 +296,7 @@ def create_app():
             votes[selected_diner] = 1
         session['votes'] = votes
 
-        # Save the voted diner in the session
+        # speichert den gewählten Diner in der Session
         session['voted_diner'] = selected_diner
 
         return redirect(url_for('vote_results'))

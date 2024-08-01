@@ -1,9 +1,8 @@
-// Importieren Sie die benötigten Funktionen aus den SDKs, die Sie benötigen
+// benötigten Funktionen aus SDKs importiert
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 
-// Die Firebase-Konfiguration Ihrer Web-App
-// Für Firebase JS SDK v7.20.0 und später ist measurementId optional
+// Firebase-Konfiguration
 const firebaseConfig = {
   apiKey: "AIzaSyA6v-GqDEwprY98nShBwTJRJTbvQrXc0iA",
   authDomain: "delizia-cc6d1.firebaseapp.com",
@@ -18,17 +17,16 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
-// Function to register user
+
 function registerUser(email, password) {
     return createUserWithEmailAndPassword(auth, email, password);
   }
   
-  // Function to login user
+
   function loginUser(email, password) {
     return signInWithEmailAndPassword(auth, email, password);
   }
-  
-  // Function to logout user
+
   function logoutUser() {
     return signOut(auth);
   }
