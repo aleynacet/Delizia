@@ -33,12 +33,37 @@ nav_order: 1
 
 ## Overview
 
-[Give a high-level overview of what your app does and how it achieves it: similar to the value proposition, but targeted at a fellow developer who wishes to contribute.]
+Unser Projekt ist eine Webanwendung, die mit Flask entwickelt wurde. Der mit „flask run“ gestartete Server verwendet eine Datei mit den Routen, um die Navigation zwischen HTML-Seiten zu verwalten.
+
+Wir nutzen die Yelp Fusion API, um Restaurantdaten abzurufen und sicherzustellen, dass keine doppelten Einträge vorhanden sind, indem wir einen Code implementiert haben, der eindeutige Restaurants überprüft und speichert. Der API-Schlüssel wird sicher in einer separaten JSON-Datei gespeichert und nicht auf das Repository gepushed, da sonst der Service Key von Firebase "disabled" wird.
+
+Firestore wird zum Speichern der Restaurantdaten verwendet. Darüber hinaus nutzen wir die Firebase Authentication für die Benutzerregistrierung und -anmeldung.
 
 ## Codemap
 
 [Describe how your app is structured. Don't aim for completeness, rather describe *just* the most important parts.]
 
+### firebase.js
+
+### __inti__,py
+
+### save_to_firestore.py
+
+### delizia-xxx.json
+
+### firebase_auth.py
+
+### package-lock.json
+
+### package.json
+
+### yelp_api.py
+
+
+
 ## Cross-cutting concerns
 
 [Describe anything that is important for a solid understanding of your codebase. Most likely, you want to explain the behavior of (parts of) your application. In this section, you may also link to important [design decisions](../design-decisions.md).]
+
+### Yelp Fusion API
+
