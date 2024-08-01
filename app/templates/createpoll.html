@@ -1,13 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container">
-    <div class="text-center margin-top">
-    <a href="{{ url_for('vote') }}" class="btn custom-btn mb-3">Create Poll</a>
-</div>
-    <ul>
-        {% for diner in diners %}
-            <li>{{ diner }}</li>
-        {% endfor %}
-    </ul>
-</div>
+    <div class="container mt-4">
+        <h2>Selected Diners</h2>
+        <div class="text-center margin-top">
+            <a href="{{ url_for('vote') }}" class="btn custom-btn mb-3">Create Poll</a>
+        </div>
+        <div class="row">
+            {% for diner in diners %}
+            <div class="col-12 mb-4">
+                <div class="bordered-box d-flex justify-content-between align-items-center">
+                    <div>
+                        <h4 class="restaurant-name mb-0 font-weight-bold">{{ diner }}</h4>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">

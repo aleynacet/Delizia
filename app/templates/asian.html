@@ -2,14 +2,19 @@
 {% block content %}
     <div class="container mt-4">
         <h2>{{ category }}</h2>
+        <div class="text-center margin-top">
+        <a href="{{ url_for('choosediner', category='asian') }}" class="btn custom-btn mb-3">Start Poll</a>
+        </div>
         <div class="row">
             {% for restaurant in restaurants %}
             <div class="col-12 mb-4">
                 <div class="bordered-box d-flex justify-content-between align-items-center">
-                    <h5 class="restaurant-name mb-0">{{ restaurant.name }}</h5>
+                    <div>
+                        <h4 class="restaurant-name mb-0 font-weight-bold">{{ restaurant.name }}</h4>
+                        <p class="restaurant-address mb-0">{{ restaurant.location.address1 }}, {{ restaurant.location.city }}, {{ restaurant.location.zip_code }}</p>
+                    </div>
                     <div class="ratings d-flex align-items-center">
                         <div>
-                             <!-- Debugging: Print the rating value -->
                             <p>Rating: {{ restaurant.rating }}</p>
                             {% for i in range(1, 6) %}
                                 {% if i <= restaurant.rating %}
@@ -25,9 +30,6 @@
             </div>
             {% endfor %}
         </div>
-    </div>
-<div class="text-center margin-top">
-        <a href="{{ url_for('choosediner', category='Japanese', 'Chinese', 'Korean') }}" class="btn custom-btn mb-3">Start Poll</a>
     </div>
 {% endblock %}
 

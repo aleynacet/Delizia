@@ -47,7 +47,7 @@ def create_app():
  
             result = firebase_login(email, password)
             if 'error' in result:
-                flash(result['error']['message'], 'danger')
+                flash('Invalid Login', 'danger')
             else:
                 session['user'] = result['idToken']
                 flash('Login successful', 'success')
@@ -84,7 +84,7 @@ def create_app():
                 return "No restaurants found", 404
 
             # Pass the restaurants list to the template
-            return render_template('all.html', restaurants=restaurants_list, category="All Restaurants")
+            return render_template('all.html', restaurants=restaurants_list, category="All")
         except Exception as e:
             return f"An error occurred while fetching data: {e}", 500
 
@@ -108,7 +108,7 @@ def create_app():
                 return "No restaurants found for category 'asian'", 404
 
             # Pass the restaurants list to the template
-            return render_template('asian.html', restaurants=restaurants_list)
+            return render_template('asian.html', restaurants=restaurants_list, category="Asian")
         except Exception as e:
             return f"An error occurred while fetching data: {e}", 500
     
@@ -131,7 +131,7 @@ def create_app():
                 return "No restaurants found for category 'vegan'", 404
 
             # Pass the restaurants list to the template
-            return render_template('vegan.html', restaurants=restaurants_list)
+            return render_template('vegan.html', restaurants=restaurants_list, category="Vegan")
         except Exception as e:
             return f"An error occurred while fetching data: {e}", 500
         
@@ -154,7 +154,7 @@ def create_app():
                 return "No restaurants found for category 'vegetarian'", 404
 
             # Pass the restaurants list to the template
-            return render_template('vegetarian.html', restaurants=restaurants_list)
+            return render_template('vegetarian.html', restaurants=restaurants_list, category="Vegetarian")
         except Exception as e:
             return f"An error occurred while fetching data: {e}", 500
         
@@ -177,7 +177,7 @@ def create_app():
                 return "No restaurants found for category 'mexican'", 404
 
             # Pass the restaurants list to the template
-            return render_template('mexican.html', restaurants=restaurants_list)
+            return render_template('mexican.html', restaurants=restaurants_list, category="Mexican")
         except Exception as e:
             return f"An error occurred while fetching data: {e}", 500
         
@@ -204,7 +204,7 @@ def create_app():
                 return "No restaurants found for category 'italian'", 404
 
             # Pass the restaurants list to the template
-            return render_template('italian.html', restaurants=restaurants_list, category="Italian Restaurants")
+            return render_template('italian.html', restaurants=restaurants_list, category="Italian")
         except Exception as e:
             return f"An error occurred while fetching data: {e}", 500
 
@@ -227,7 +227,7 @@ def create_app():
                 return "No restaurants found for category 'german'", 404
 
             # Pass the restaurants list to the template
-            return render_template('german.html', restaurants=restaurants_list)
+            return render_template('german.html', restaurants=restaurants_list, category="German")
         except Exception as e:
             return f"An error occurred while fetching data: {e}", 500
  
@@ -243,6 +243,15 @@ def create_app():
                 return redirect(url_for('createpoll'))
         
         try:
+            category_mapping = {
+                'asian': ['japanese', 'chinese', 'korean'],
+                'italian': ['italian'],
+                'mexican': ['mexican'],
+                'vegan': ['vegan'],
+                'vegetarian': ['vegetarian'],
+                'german': ['german']
+            }
+
             restaurants_ref = db.collection('yelp_businesses')
             docs = restaurants_ref.stream()
             
@@ -250,12 +259,13 @@ def create_app():
             for doc in docs:
                 restaurant_data = doc.to_dict()
                 categories = restaurant_data.get('categories', [])
-                if category == 'all' or any(cat.get('title').lower() == category for cat in categories):
-                    if category == 'italian':
-                        # Add a default rating and review_count if they do not exist
-                        restaurant_data['rating'] = restaurant_data.get('rating', 0)
-                        restaurant_data['review_count'] = restaurant_data.get('review_count', 0)
+                
+                if category == 'all':
                     restaurants_list.append(restaurant_data)
+                else:
+                    valid_categories = category_mapping.get(category, [category])
+                    if any(cat.get('title').lower() in valid_categories for cat in categories):
+                        restaurants_list.append(restaurant_data)
             
             if not restaurants_list:
                 flash(f'No restaurants found for category {category}', 'danger')
@@ -265,6 +275,7 @@ def create_app():
         except Exception as e:
             flash(f"An error occurred while fetching data: {e}", 'danger')
             return render_template('choosediner.html', restaurants=[], category=category.capitalize())
+
         
     @app.route('/createpoll')
     def createpoll():
@@ -287,7 +298,7 @@ def create_app():
             flash('Please select a restaurant to vote for', 'danger')
             return redirect(url_for('vote'))
 
-        # Speichert die Votes in der Session
+        # Save the votes in the session
         votes = session.get('votes', {})
         if selected_diner in votes:
             votes[selected_diner] += 1
@@ -295,13 +306,11 @@ def create_app():
             votes[selected_diner] = 1
         session['votes'] = votes
 
-         # Speichert den gewählten Diner in der Session
+        # Save the voted diner in the session
         session['voted_diner'] = selected_diner
 
         return redirect(url_for('vote_results'))
     
-    
-
     @app.route('/vote_results')
     def vote_results():
         voted_diner = session.get('voted_diner')
@@ -312,6 +321,12 @@ def create_app():
         diners = session.get('selected_diners')
         votes = session.get('votes', {})
         return render_template('vote_results.html', voted_diner=voted_diner, diners=diners, votes=votes)
+    
+    @app.route('/final_results')
+    def final_results():
+        diners = session.get('selected_diners')
+        votes = session.get('votes', {})
+        return render_template('final_results.html', diners=diners, votes=votes)
     
  
     @app.route('/update_yelp_data', methods=['GET'])

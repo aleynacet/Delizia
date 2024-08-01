@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container mt-4">
-    <h2>Voting Results</h2>
+    <h2>Final Voting Results</h2>
     <div class="row">
         {% set max_votes = votes.values() | max %}
         {% for diner in diners %}
@@ -12,17 +12,13 @@
                     <div class="progress-bar-wrapper">
                         {% set vote_count = votes[diner] if diner in votes else 0 %}
                         {% set width_percentage = (vote_count / max_votes) * 100 if max_votes > 0 else 0 %}
-                        <div class="progress-bar {% if diner == voted_diner %}voted-diner{% endif %}" style="width: {{ width_percentage }}%;"></div>
+                        <div class="progress-bar" style="width: {{ width_percentage }}%;"></div>
                     </div>
                     <span class="vote-count">{{ vote_count }}</span>
                 </div>
             </div>
         </div>
         {% endfor %}
-    </div>
-    <div class="text-center margin-top">
-        <a href="{{ url_for('vote') }}" class="btn custom-btn mb-3">Next Vote</a>
-        <a href="{{ url_for('final_results') }}" class="btn custom-btn mb-3">See Final Results</a>
     </div>
 </div>
 {% endblock %}

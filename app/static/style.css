@@ -45,8 +45,8 @@ body, html {
 
 /* Buttons */
 .text-center .custom-btn {
-    width: 200px;
-    height: 50px;
+    width: 250px; /* Increase the width */
+    height: 60px; /* Increase the height */
     background-color: #DB7093; /* Altrosa */
     color: white;
     border: none;
@@ -56,6 +56,7 @@ body, html {
     display: block;
     margin: 0 auto;
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 10px 20px; /* Add padding for more space inside the button */
 }
 
 .text-center .custom-btn:hover {
@@ -67,6 +68,22 @@ body, html {
 .text-center .custom-btn:active {
     transform: translateY(0);
     box-shadow: 0 4px #c06082;
+}
+
+.custom-back-btn {
+    font-size: 1em; /* Slightly larger font size */
+    color: black;
+    background-color: transparent;
+    border: none;
+    padding: 5px 10px; /* Add some padding for a better clickable area */
+    margin-top: 10px; /* Minimal space below the "Start Poll" button */
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.custom-back-btn:hover {
+    color: grey; /* Slight color change on hover */
+    text-decoration: none;
 }
 
 /* Kategorie-Buttons */
@@ -174,10 +191,6 @@ h2 {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.bordered-box:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
 
 .margin-top {
     margin-top: 20px;
@@ -201,6 +214,112 @@ h2 {
     font-size: 1em;
     color: #666;
     margin-left: 5px;
+}
+
+.restaurant-name {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.selectable {
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.selectable:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.selectable.selected {
+    background-color: #f0a1b5; /* Lighter color */
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.5);
+}
+
+.restaurant-address {
+    font-size: 1rem;
+    color: #7f8c8d;
+}
+
+input[type="radio"] {
+    display: none; /* Hide original radio button */
+}
+
+input[type="radio"] + label {
+    position: relative;
+    padding-left: 35px; /* Space for custom radio button */
+    cursor: pointer; /* Make label clickable */
+}
+
+input[type="radio"] + label::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid #c06082;
+    border-radius: 50%;
+    background: white;
+}
+
+input[type="radio"]:checked + label::before {
+    background: #c06082;
+}
+
+input[type="radio"] + label::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 50%;
+    transform: translateY(-50%) scale(0);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+    transition: transform 0.2s ease;
+}
+
+input[type="radio"]:checked + label::after {
+    transform: translateY(-50%) scale(1);
+}
+/* Progress Bar Styles */
+.progress-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0; /* Adds vertical spacing around the progress bar */
+}
+
+.progress-bar-wrapper {
+    flex-grow: 1;
+    margin: 0 10px; /* Adds horizontal spacing between the name and the bar, and between the bar and the vote count */
+    background-color: #f0f0f0; /* Light grey background for the bar container */
+    border-radius: 10px;
+    overflow: hidden; /* Ensures the bar stays within the rounded corners */
+    height: 30px;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: grey; /* Default bar color */
+    transition: width 0.3s ease;
+}
+
+.vote-count {
+    font-size: 1.2em;
+    color: #333;
+    min-width: 40px; /* Ensures the vote count section has some space */
+    text-align: center; /* Centers the vote count text */
+}
+
+.voted-diner {
+    background-color: green !important; /* Highlight the selected diner's bar */
 }
 
 /* Medienabfragen für kleine Bildschirme */
