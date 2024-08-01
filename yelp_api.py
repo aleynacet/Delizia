@@ -1,27 +1,26 @@
 import requests
 import firebase_admin
 from firebase_admin import credentials, firestore
-import os 
-
+import os
+ 
 # Yelp API Key
 API_KEY = 'CO4SfZLlBTHcBcCv7n1Jl0C2H92Yh3ycI9edHOOh3ClgwnWBTlZ1Dfxk1rI_Tc4KAoehowI4W6MwJPEVzhrPFkQuTPrYHUM8_VhwZ6bEh4ES0Sf4dCuefFqTKICnZnYx'
 BASE_URL = 'https://api.yelp.com/v3/businesses/search'
-
-# Check if the path to the Firebase JSON file is correct
-
-path = 'delizia-cc6d1-48416a047928.json'
-
+ 
+# prüft ob der Pfad zur Firebase-JSON-Datei korrekt ist
+path = 'delizia-cc6d1-6ffb26f4fbba.json'
+ 
 if os.path.exists(path):
     print("Der Pfad ist korrekt.")
 else:
     print("Der Pfad ist nicht korrekt.")
-
-# Initialize Firebase Admin SDK
-cred = credentials.Certificate('delizia-cc6d1-48416a047928.json')
+ 
+# initialisiert Firebase
+cred = credentials.Certificate('delizia-cc6d1-6ffb26f4fbba.json')
 firebase_admin.initialize_app(cred)
 db = firestore.client()
-
-def search(term, location, categories, radius):
+ 
+def search(term, location, categories, radius, offset=0):
     headers = {
         'Authorization': f'Bearer {API_KEY}'
     }
@@ -30,7 +29,8 @@ def search(term, location, categories, radius):
         'location': location,
         'categories': categories,
         'radius': radius,
-        'limit': 1  # Limit to 1 result for now
+        'limit': 1,  # limitiert die Anzahl der Ergebnisse auf 1
+        'offset': offset  # damit wir verschiedene Ergebnisse erhalten
     }
     response = requests.get(BASE_URL, headers=headers, params=params)
     if response.status_code == 200:
@@ -43,12 +43,13 @@ def search(term, location, categories, radius):
             print("No businesses found.")
     else:
         raise Exception(f'Yelp API request failed with status code {response.status_code}')
-
+ 
 def save_to_firestore(collection_name, document_id, data):
     doc_ref = db.collection(collection_name).document(document_id)
     doc_ref.set(data)
     print(f'Data saved to {collection_name}/{document_id}')
-
-# Example usage
+ 
 if __name__ == '__main__':
-    search('restaurants', 'Berlin', 'korean', 15000)
+    for i in range(15):  # Holt 15 verschiedene restaurants in Berlin
+        search('restaurants', 'Berlin', 'japanese', 15000, offset=i)
+# Hier haben wir auch andere Kategorien eingesetzt, wie z.B. 'vegan', 'italian', 'asian'
