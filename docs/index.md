@@ -44,3 +44,7 @@ Die oben genannten Teammitglieder erklären an Eides statt:
 
 {: .fs-2 }
 Last build: {{ site.time | date: '%d %b %Y, %R%:z' }}
+
+## Verwendete Hilfsmittel
+
+Wir haben GitHub Copilot als Hilfe für die Integration der Yelp-API und die Speicherung in Firebase verwendet, da die API-Behandlung in unserem Kurs nicht behandelt wurde. Den von Copilot generierten Code haben wir eigenständig ein wenig angepasst. Zusätzlich haben wir die Yelp-API-Dokumentation und Firebase-Tutorials genutzt, um die Vorschläge von Copilot zu ergänzen  (Betroffene Dateien: yelp_api.py, save_to_firestore.py). Als Inspiration für die Benutzeroberfläche (Design) haben wir ebenfalls Vorschläge von Copilot verwendet und diese dann nach eigenen Vorlieben angepasst (Betroffene Dateien: Html-Dateien, CSS).

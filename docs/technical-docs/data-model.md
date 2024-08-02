@@ -7,14 +7,8 @@ nav_order: 2
 {: .label }
 [Jane Dane]
 
-{: .no_toc }
 # Data model
 
-<details open markdown="block">
-{: .text-delta }
-<summary>Table of contents</summary>
-+ ToC
-{: toc }
-</details>
+![Data_Model](../assets/images/data_model.png)
 
-[Visualize and describe the data model(s) of your application. This description should match the actual implementation.]
+Das folgende Entity Relationship Diagramm stellt den Datenfluss zwischen verschiedenen Komponenten unseres Projektes dar. Die API stellt Daten zu Restaurants bereit, die dann in der Datenbank von Firebase gespeichert und verwaltet werden. Die Front-End-Anwendung, mit der Benutzer interagieren, ruft die Daten von Firebase ab. Außerdem müssen sich Benutzer, bevor sie die Daten abrufen, registrieren und einloggen. Dafür ruft die Web-App die in Firebase gespeicherten Benutzeranmeldeinformationen zu Authentifizierungszwecken ab. 
