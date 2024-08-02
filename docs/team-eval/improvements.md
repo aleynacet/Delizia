@@ -4,8 +4,7 @@ parent: Team Evaluation
 nav_order: 2
 ---
 
-{: .label }
-[Jane Dane]
+
 
 {: .no_toc }
 # How we would improve next time
