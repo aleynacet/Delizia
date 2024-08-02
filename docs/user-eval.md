@@ -16,30 +16,30 @@ nav_order: 4
 {: toc }
 </details>
 
-## 01: [Title]
+## 01: Hervorhebung der ausgewählten Restaurants
 
 ### Meta
 
 Status
-: **Work in progress** - Done - Obsolete
+: Work in progress - **Done** - Obsolete
 
 Updated
-: DD-MMM-YYYY
+: 31.07.2024
 
 ### Goal
 
-[Describe the goal of this evaluation, for example as a research question like: "How long does it take to register a new account and what is the drop-out rate?"]
+Wie benutzerfreundlich ist die neue Seite choosediner.html, die ausgewählte Restaurants in Pink statt in Weiß (der Farbe nicht ausgewählter Restaurants) hervorhebt und die ausgewählten Restaurants dadurch deutlicher hervorhebt?
 
 ### Method
-
-[Describe how you proceed to achieve your evaluation goal. Be as specific as possible: others should be able to replicate your evaluation by following the description on this section.]
+Um unser Evaluierungsziel zu erreichen, baten wir Familienmitglieder, durch unsere Webanwendung zu navigieren. Ziel war es, herauszufinden, ob das neue Design (Hervorhebung ausgewählter Restaurants in Pink) die Benutzererfahrung im Vergleich zum alten Layout verbessert, bei dem ausgewählte und nicht ausgewählte Restaurants nicht so deutlich voneinander unterschieden waren. Die Teilnehmer hatten zuvor Probleme mit dem alten Layout, bei dem sie versehentlich Restaurants auswählten, ohne es zu merken, bis sie versuchten, ihre Umfrage abzuschließen.
 
 ### Results
 
-[Present the main results of your evaluation, for example: "On average, users need 3 min to register. The drop-out rate was 70%. Users that didn't complete provided the following reasons: ..."]
+Die Teilnehmer fanden es einfacher, im neuen Design zu navigieren als im alten. Sie berichteten, dass die rosa Hervorhebung ausgewählter Restaurants es deutlich einfacher machte, zwischen ausgewählten und nicht ausgewählten Optionen zu unterscheiden. Die Benutzer machten weniger versehentliche Auswahlen und fühlten sich während des gesamten Navigationsprozesses sicherer in ihren Entscheidungen.
 
 ### Implications
 
-[What did you learn from this evaluation and what will you change to improve? Example: "We aim to decrease the drop-out rate by not asking for a birth date. We will re-run this evaluation to measure the impact."]
+Aus dieser Evaluierung haben wir gelernt, dass die Hervorhebung ausgewählter Restaurants in Pink die Benutzernavigation deutlich verbessert und Fehler reduziert. 
+
 
 ---

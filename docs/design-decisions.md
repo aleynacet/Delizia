@@ -16,77 +16,56 @@ nav_order: 3
 {: toc }
 </details>
 
-## 01: [Title]
-
+## 01: Firebase-Authentifizierung
 ### Meta
 
-Status
-: **Work in progress** - Decided - Obsolete
+Status: Entschieden
 
-Updated
-: DD-MMM-YYYY
+### Problemstellung
+Um sicherzustellen, dass unsere Webanwendung eine sichere und effiziente Benutzerverwaltung bietet, musste ein Authentifizierungssystem eingeführt werden. Dieses sollte sowohl die Registrierung neuer Benutzer als auch die Anmeldung bestehender Benutzer ermöglichen.
 
-### Problem statement
+### Entscheidung
+Wir beschlossen, die Firebase-Authentifizierung zu verwenden, weil sie eine Vielzahl von Authentifizierungsoptionen anbietet und gute Sicherheitsmerkmale aufweist. Firebase stellt außerdem eine anpassungsfähige und nützliche Lösung zur Verfügung, die wir wirksam in einem anderen Modul verwendet haben und somit den Entwicklungsprozess deutlich vereinfacht und beschleunigt haben, da wir bereits mit der Firebase-Authentifizierung vertraut waren.
 
-[Describe the problem to be solved or the goal to be achieved. Include relevant context information.]
+## 02: Bootstrap 
+### Meta
+Status: Entschieden
 
-### Decision
+### Problemstellung
 
-[Describe **which** design decision was taken for **what reason** and by **whom**.]
+Bei unserem Projekt standen wir vor der Herausforderung, ein konsistentes und ansprechendes Design zu codieren. Daher benötigten wir ein Design-Framework, das für Konsistenz sorgt und die Benutzeroberfläche effizient gestaltet, um den Entwicklungsprozess zu beschleunigen.
 
-### Regarded options
+### Entscheidung
+Diese Herausforderung bewältigten wir durch die Verwendung von Bootstrap, einem Framework, das uns in der Vorlesung vorgestellt wurde. Die vorgefertigten Komponenten haben uns dabei geholfen Zeit zu sparen und schneller voranzukommen.
+Mit diesen Werkzeugen war es uns möglich Layouts schnell zu erstellen. Dadurch hat sich der Entwicklungszeitaufwand deutlich verringert.
 
-[Describe any possible design decision that will solve the problem. Assess these options, e.g., via a simple pro/con list.]
+### In Betracht gezogene Optionen
+Es wäre uns möglich gewesen, nur mit HTML und CSS zu arbeiten. Dies hätte uns jedoch einen deutlich größeren Zeitaufwand für die Entwicklung und die Prüfung bedeutet. Im Gegensatz dazu stellt Bootstrap vordefinierte Layouts und Styles zur Verfügung.
 
----
-
-## [Example, delete this section] 01: How to access the database - SQL or SQLAlchemy 
-
+## 03: Firestore for Database
 ### Meta
 
-Status
-: Work in progress - **Decided** - Obsolete
+Status: Entschieden
 
-Updated
-: 30-Jun-2024
+### Problemstellung
+Wir brauchten eine Datenbank zum Speichern unserer Restaurantdaten, da wir die Yelp-API aufgrund eines Limits von 300 API-Calls pro Tag nicht immer aufrufen konnten. 
 
-### Problem statement
+### Entscheidung
+Daher haben wir uns für die Firestore Datenbank entschieden, da ein Dozent in einem anderen Modul sie uns empfahl.
 
-Should we perform database CRUD (create, read, update, delete) operations by writing plain SQL or by using SQLAlchemy as object-relational mapper?
+### In Betracht gezogene Optionen
+Wir hätten uns auch für die im Kurs besprochene Datenbank (SQLAlchemy) entscheiden können, aber wir haben uns für Firestore entschieden. Da wir für unsere Webanwendung hauptsächlich nur die von einer API bereitgestellten Daten verarbeiten müssen und keine Nutzerdaten (außer für die Anmeldung) speichern, erschien Firestore einfacher.
 
-Our web application is written in Python with Flask and connects to an SQLite database. To complete the current project, this setup is sufficient.
+## 04: Yelp Fusion API Integration
 
-We intend to scale up the application later on, since we see substantial business value in it.
+### Meta
+Status: Entschieden
 
+### Problemstellung
 
+Für die Idee, die wir für unser Projekt besprochen haben, brauchten wir eine API. Das Problem war, dass wir die Restaurantdaten nicht manuell eingeben wollten und sie in Kategorien geteilt brauchten. Außerdem wollten wir, dass die Benutzer auch sehen können, wie das Restaurant von anderen bewertet wurde, damit die Bewertung ihnen bei der Entscheidung für das Restaurant helfen kann.
 
-Therefore, we will likely:
-Therefore, we will likely:
-Therefore, we will likely:
+### Entscheidung
+Wir haben uns für die Yelp Fusion API entschieden, da wir die Restaurants mit dieser API nach Kategorien filtern konnten (für unsere categories.html). Außerdem haben wir durch unsere Recherche auch herausgefunden, dass die API auch Rezensionen liefert.
 
-+ Change the database schema multiple times along the way, and
-+ Switch to a more capable database system at some point.
-
-### Decision
-
-We stick with plain SQL.
-
-Our team still has to come to grips with various technologies new to us, like Python and CSS. Adding another element to our stack will slow us down at the moment.
-
-Also, it is likely we will completely re-write the app after MVP validation. This will create the opportunity to revise tech choices in roughly 4-6 months from now.
-*Decision was taken by:* github.com/joe, github.com/jane, github.com/maxi
-
-### Regarded options
-
-We regarded two alternative options:
-
-+ Plain SQL
-+ SQLAlchemy
-
-| Criterion | Plain SQL | SQLAlchemy |
-| --- | --- | --- |
-| **Know-how** | ✔️ We know how to write SQL | ❌ We must learn ORM concept & SQLAlchemy |
-| **Change DB schema** | ❌ SQL scattered across code | ❔ Good: classes, bad: need Alembic on top |
-| **Switch DB engine** | ❌ Different SQL dialect | ✔️ Abstracts away DB engine |
-
----
+![firestore](./assets/images/firestore.png)
