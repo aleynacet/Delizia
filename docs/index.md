@@ -13,16 +13,13 @@ Delizia ist eine Web-Anwendung, die die Restaurantwahl in Gruppen erleichtert. N
 
 ### Aleyna Cetin
 
-About
-: Some info about...
+
 
 Matr.-Nr.
 : 77211974944
 
 ### Arathi Suwatharan
 
-About
-: Some info about...
 
 Matr.-Nr.
 : 77211973039
@@ -30,8 +27,6 @@ Matr.-Nr.
 
 ### Tara Darvish
 
-About
-: Some info about...
 
 Matr.-Nr.
 : 77211974957
